@@ -1,0 +1,74 @@
+
+<br>
+  <div align="end">
+  <a [routerLink]="['/product-dashboard']">Back to Product Dashboard</a>
+  </div>
+
+<div id="detail" class="container">
+<div *ngIf="product">
+
+  
+  
+  <br>
+  
+  <h2 class="page-header">{{product.companyname}}</h2>
+<div class="row">
+<div class="col-md-5">
+    <ul class="list-group"> 
+        <li class="list-group-item justify-content-between"><strong>Product Name:</strong>{{product.prodname}}</li>
+        <li class="list-group-item justify-content-between"><strong>Product Category:</strong>{{product.prodcat}}</li>
+          <li class="list-group-item justify-content-between"><strong>Mainline Technical Contact</strong> {{product.mltechcontact}}</li>
+          <li class="list-group-item justify-content-between"><strong>Web Site:</strong>         {{product.url}}</li>
+           <li class="list-group-item justify-content-between"><strong>Product Description:</strong> {{product.proddescrip}}</li>
+           <li class="list-group-item justify-content-between"*ngFor="let prod of product.features; let i = index">
+             <strong>Feature Name</strong> {{prod.featurename}} </li>
+
+    </ul>
+
+<br>
+<div class="container">
+  <!--<a class="btn btn-outline-warning" [routerLink]="['/vendor-edit/'+vendor.$key]">Edit</a>-->
+<!--<a class="btn btn-outline-warning" [routerLink]="['/vendor-edit/'+vendor.$key]">Edit</a>
+<a class="btn btn-outline-success" [routerLink]="['/product/'+vendor.$key]">Add Product</a>-->
+<!--<a class="btn btn-outline-success" [routerLink]="['/product/'+vendor.$key]">Add Product</a>-->
+<a class="btn btn-outline-danger" (click)="onDeleteClick()">Delete</a>
+</div>
+
+</div>
+
+
+
+<!-- SECOND GROUP IN FORM <div class="col-md-6">
+    <ul class="list-group"> 
+        <li class="list-group-item justify-content-between"><strong>Mainline Relationship Owner:</strong> {{vendor.mlcontact}}</li>
+
+      <li class="list-group-item justify-content-between" ><strong>Vendor Contact and Email:</strong> {{vendor.vncontact}}</li>
+       <li class="list-group-item justify-content-between" ><strong>Distrutor Company Name:</strong> {{vendor.dicompany}}</li>
+       <li class="list-group-item justify-content-between" ><strong>Distributor Contact and Email:</strong> {{vendor.dicontact}}</li>
+       <li class="list-group-item justify-content-between"><strong>Mainline Account Status:</strong>         {{vendor.mlstatus}}</li>
+       <li class="list-group-item justify-content-between" ><strong>Authorized for sales in Puerto Rico:</strong> {{vendor.prstatus}}</li>
+       <li class="list-group-item justify-content-between" ><strong>Previous Year Revenue:</strong> {{vendor.revyear}}</li>
+       <li class="list-group-item justify-content-between"><strong>SFDC Link:</strong>         {{sfdclink}}</li>
+    </ul>       
+</div>-->
+</div>
+
+</div>
+<!--<a class="btn btn-outline-warning">Edit</a>
+<a class="btn btn-outline-danger" (click)="onDeleteClick()">Delete</a>
+</div>-->
+
+<footer class="footer">
+      <div class="container">
+        <span class="text-muted">Powered by Zygodata</span>
+      </div>
+    </footer>
+
+
+
+
+
+
+<!--<p>
+  product-detail works!
+</p>-->

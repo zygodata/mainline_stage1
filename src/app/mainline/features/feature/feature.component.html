@@ -1,0 +1,36 @@
+<div class="row">
+  <div class="large-12 columns">
+  
+    <br>
+    <form [formGroup]="featureForm" ngSubmit="submit()">
+
+
+        <div class="form-group">
+        <label>Feature Name:</label>
+      <input type="text" class="form-control" placeholder="Feature Name" formControlName="featurename" >
+        </div>
+  <input type="submit" class="form-control" value="Submit">
+    </form>
+    <table class="table">
+      <thead>
+        <tr>
+          <th>Feature Name</th>
+          <th>Feature Category</th>
+          <th>Feature Description</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>{{name}}</td>
+          <td>{{category}}</td>
+          <td>{{description}}</td>
+          <td>
+            <button class="btn btn-primary">More</button>
+            <button class="btn btn-primary">Edit</button>
+            <button class="btn btn-primary">Delete</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

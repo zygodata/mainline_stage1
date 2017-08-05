@@ -1,0 +1,165 @@
+<br>
+<div align="end">
+  <a [routerLink]="['/dashboard']">Back to Vendor Dashboard</a>
+  </div>
+<div class="container">
+<div class="bs-docs-section">
+        <div class="row">
+          <div class="col-lg-12">
+            <div class="page-header">
+              <!--<h2 id="forms">Add Vendor Form</h2>-->
+            </div>
+          </div>
+        </div>
+
+<div class="row">
+  <div class="col-lg-6">
+    <div class="well bs-component">
+<form class="form-horizontal" [formGroup]="vendorForm" (ngSubmit)="onSubmit()">
+<legend> Add Vendor Information </legend>
+ 
+  <div class="form-group">
+        <label>Vendor Company Name:</label>
+      <input type="text" class="form-control"   formControlName="companyname"  >
+     
+  </div>
+
+
+ <div class="form-group">
+      <label>Vendor Category:</label>  <span class="help-block" style="color:red">Required field</span>
+      <select name="companytype" class="form-control"  formControlName="companytype" [(ngModel)]="zvendor.vtype">
+        <option *ngFor="let vtype of vtypes" [value]="vtype.value">{{vtype.display}}</option>
+             </select>
+                  
+    </div>
+
+   <div class="form-group">
+        <label>Vendor Purchasing Source Relationship:</label>  <span class="help-block" style="color:red">Required field</span>
+         <select name="source" class="form-control"  formControlName="source" [(ngModel)]="zvendor.slist" >
+        <option *ngFor="let slist of slists" [value]="slist.value">{{slist.display}}</option>
+          </select>
+                  
+        <!--<input type="text" class="form-control" [(ngModel)]="source"  formControlName="source">-->
+     <!--<span class="help-block">List the distributor that represents the vendor</span>-->
+  </div>
+  
+ 
+ <div class="form-group">
+       <label>Company Website:</label>
+       <div class="input-group">
+        <span class="input-group-addon" id="basic-addon3">https://example.com</span>
+      <input type="text" class="form-control"  formControlName="url">
+       </div>
+  </div>
+<!--</div> DIV for forGroupName-->
+
+
+
+ <div class="form-group">
+        <label>Company Notes:</label>
+        <!--<input type="text" class="form-control"  placeholder="will be hooked up soon" disabled>-->
+
+                <textarea rows="3" cols="64" pInputTextarea formControlName="notes" autoResize="autoResize" placeholder="Enter Notes Here"></textarea>
+        </div>
+  
+
+
+<!--<div class="form-group">
+   <label>Vendor Company Comments:</label>
+  <textarea class="form-control" rows="5"  [(ngModel)]="notes" formControlName="notes" placeholder="Enter Notes Here"></textarea>
+   <span class="help-block">The length of the note can extend beyond the size of the text box.</span>
+</div>-->
+
+<!-- Inject Ratings Service here-->
+
+<div class="form-group">
+<ngb-rating [(rate)]="currentRate">
+  <ng-template let-fill="fill">
+    <span class="star" [class.filled]="fill === 100">&#9733;</span>
+  </ng-template>
+</ngb-rating>
+<hr>
+<pre>Rate: <b>{{currentRate}}</b></pre>
+ <span class="help-block">Provide a rating for this vendor with 10 being excellent</span>
+</div>
+
+  <button type="submit" [disabled]="!vendorForm.valid" class="btn btn-primary">Submit</button>
+  
+  </form>
+    </div>
+</div>
+
+
+<!-- Second Column on the right for Contact Information-->
+
+<div class="col-lg-6 col-lg-offset-4">
+  <legend>Vendor Contacts and Status</legend>
+  <form class="bs-component" [formGroup]="vendorForm">
+    <div formGroupName="details">
+
+     <div class="form-group">
+        <label>Mainline Vendor Account Owner:</label>
+       <input type="text" class="form-control"  formControlName="mlcontact" >
+  </div>
+
+ <div class="form-group">
+        <label>Vendor Contact and Email:</label>
+        <input type="text" class="form-control"  formControlName="vncontact" >
+      <!--<input type="text" class="form-control" [(ngModel)]="vncontact" formControlName="vncontact" placeholder="name - email">-->
+  </div>
+
+  <div class="form-group">
+        <label>Distributor Company Name:</label>
+      <input type="text" class="form-control"  formControlName="dicompany">
+  </div>
+
+ <div class="form-group">
+        <label>Distributor Contact and Email:</label>
+      <input type="text" class="form-control" formControlName="dicontact" >
+  </div>
+
+<div class="form-group">
+        <label>Mainilne Vendor Status:</label>  <span class="help-block" style="color:red">Required field</span>
+          <select name="mlstatus" class="form-control" [(ngModel)]="mlstatus" formControlName="mlstatus" [(ngModel)]="zvendor.condition" >
+        <option *ngFor="let condition of conditions" [value]="condition.value">{{condition.display}}</option>
+      </select>
+           
+      <!--<input type="text" class="form-control" >-->
+  </div>
+
+  <div class="form-group">
+        <label>Vendor is authorized for sales in Puerto Rico:</label> <span class="help-block" style="color:red">Required field</span>
+          <select name="prstatus" class="form-control"  formControlName="prstatus" [(ngModel)]="zvendor.prcondition" placeholder="Search..." >
+        <option *ngFor="let prcondition of prconditions" [value]="prcondition.value">{{prcondition.display}}</option>
+      </select>
+  </div>
+
+
+    <div class="form-group">
+        <label>Previous Year's Revenue:</label>
+      <input type="text" class="form-control"  formControlName="revyear"  >
+  </div>
+
+     <!--<div class="form-group">
+        <label>Vendor Status Notes:</label>
+      <input type="text" class="form-control" >
+  </div>-->
+
+   <div class="form-group">
+        <label>SFDC Link for More Information:</label>
+        <a>{{sfdclink}}</a>
+     <!--<input type="text" class="form-control">-->
+  </div>
+    </div>
+  </form>
+  </div>
+</div>
+</div>
+</div>
+
+<footer class="footer">
+      <div class="container">
+        <span class="text-muted">Powered by Zygodata</span>
+      </div>
+    </footer>
+

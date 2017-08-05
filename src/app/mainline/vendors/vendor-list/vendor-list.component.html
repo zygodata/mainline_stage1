@@ -1,0 +1,23 @@
+<!--<p>
+  vendor-list works!
+</p>-->
+<br>
+<div align="end">
+  <a [routerLink]="['/dashboard']">Back to Vendor Dashboard</a>
+  </div>
+
+  <div class="page-header">
+    <legend>Vendor Details</legend>
+    </div>
+  <div class="col-md-4">
+  <ul class="list-group">
+  <li class="list-group-item" *ngFor="let vendor of vendors">
+    <a [routerLink]="['/vendor-detail/'+vendor.$key]">{{vendor.companyname}} </a>
+    </li>
+  </ul>
+  </div>
+<footer class="footer">
+      <div class="container">
+        <span class="text-muted">Powered by Zygodata</span>
+      </div>
+    </footer>

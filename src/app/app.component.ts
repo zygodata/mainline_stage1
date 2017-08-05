@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
 import { NgModule , CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
-import { routes} from './app.routes'
+import { AuthService } from './services/auth.service';
+//import { RouterModule} from '@angular/router';
+
 
 @Component({
   selector: 'app-root',
@@ -8,5 +10,8 @@ import { routes} from './app.routes'
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
+  constructor (private _auth:AuthService){
+    
+  }
   title = 'app works!';
 }

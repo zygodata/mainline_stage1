@@ -1,0 +1,24 @@
+<!--<p>
+  product-list works!
+</p>-->
+
+<br>
+<div align="end">
+  <a [routerLink]="['/product-dashboard']">Back to Product Dashboard</a>
+  </div>
+
+  <div class="page-header">
+    <legend>Product Details</legend>
+    </div>
+  <div class="col-md-4">
+  <ul class="list-group">
+  <li class="list-group-item" *ngFor="let product of products">
+    <a [routerLink]="['/product-detail/'+product.$key]">{{product.prodname}} </a>
+    </li>
+  </ul>
+  </div>
+<footer class="footer">
+      <div class="container">
+        <span class="text-muted">Powered by Zygodata</span>
+      </div>
+    </footer>

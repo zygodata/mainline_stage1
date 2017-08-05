@@ -1,0 +1,442 @@
+<br>
+<div align="end">
+  <a [routerLink]="['/dashboard']">Back to Product Dashboard</a>
+  </div>
+<div class="container">
+<div class="bs-docs-section">
+        <div class="row">
+          <div class="col-lg-12">
+            <div class="page-header">
+              <!--<h2 id="forms">Add Vendor Form</h2>-->
+            </div>
+          </div>
+        </div>
+
+<div class="row">
+  <div class="col-lg-6">
+    <div class="well bs-component">
+<form class="form-horizontal" [formGroup]="vendorForm" (ngSubmit)="onProdSubmit()">
+<legend>Product Company Information </legend>
+ 
+  <div class="form-group">
+        <label>Company Name:</label>
+      <input type="text" class="form-control" [(ngModel)]="companyname"  formControlName="companyname" disabled >
+     
+  </div>
+
+ <div class="form-group">
+      <label>Company Category:</label>  
+    <input type="text" class="form-control" [(ngModel)]="companytype" formControlName="companytype" disabled >
+      <!--<select name="companyname" class="form-control" [(ngModel)]="companytype" formControlName="companytype" [(ngModel)]="zvendor.vtype">
+        <option *ngFor="let vtype of vtypes" [value]="vtype.value">{{vtype.display}}</option>
+             </select>-->
+                 <!-- <span class="help-block" style="color:red">Required drop down field</span>-->
+    </div>
+ 
+ <div class="form-group">
+       <label>Company Website:</label>
+      <input type="text" class="form-control" [(ngModel)]="url" formControlName="url" disabled>
+  </div>
+<!--</div> DIV for forGroupName-->
+
+<!--<div class="form-group">
+   <label>Vendor Company Comments:</label>
+  <textarea class="form-control" rows="5"  [(ngModel)]="notes" formControlName="notes" placeholder="Enter Notes Here"></textarea>
+   <span class="help-block">The length of the note can extend beyond the size of the text box.</span>
+</div>-->
+
+<!-- Inject Ratings Service here-->
+
+<div class="form-group">
+<ngb-rating [(rate)]="currentRate">
+  <ng-template let-fill="fill">
+    <span class="star" [class.filled]="fill === 100">&#9733;</span>
+  </ng-template>
+</ngb-rating>
+<hr>
+<pre>Rate: <b>{{currentRate}}</b></pre>
+ <span class="help-block">Provide a rating for this product with 10 being excellent</span>
+</div>
+
+  <button type="submit" [disabled]="!vendorForm.valid" class="btn btn-primary">Submit</button>
+    <!--<button type="submit"  class="btn btn-primary">Submit</button>-->
+  </form>
+    </div>
+
+</div>
+
+
+<!-- Second Column on the right for Contact Information-->
+
+ <div class="col-lg-6 col-lg-offset-4">
+  <legend>Product Information</legend>
+  <form class="bs-component" [formGroup]="vendorForm">
+    <div formGroupName="details">
+
+       <div class="form-group">
+        <label>Mainline Technical Contact:</label>
+        <input type="text" class="form-control" formControlName="mltechcontact" >
+  </div>
+
+     <div class="form-group">
+        <label>Product Name:</label>
+        <input type="text" class="form-control" formControlName="prodname" >
+  </div>
+
+ <!--<div class="form-group">
+        <label>Current Product Version:</label>
+        <input type="text" class="form-control" formControlName="prodver">
+  </div>-->
+
+   <div class="form-group">
+        <label>Product Class:</label>
+        <input type="text" class="form-control">
+  </div>
+
+<div class="form-group">
+  <label> Test Category
+    <select class="form-control" formControlName="prodver">
+      <option value="0">Select Category</option>
+      <option *ngFor="let persona of personas" value="{{persona.personaname}}" >{{persona.personaname}} </option>
+    </select>
+  </label>
+</div>
+
+ <div class="form-group">
+      <label>Product Category:</label>  <span class="help-block" style="color:red">Required field</span>
+      <select name="prodcat" class="form-control"  formControlName="prodcat" [(ngModel)]="zvendor.vtype">
+        <option *ngFor="let vtype of vtypes" [value]="vtype.value">{{vtype.display}}</option>
+             </select>
+                  
+    </div>
+
+ <div class="form-group">
+        <label>Product Description:</label>
+        <!--<input type="text" class="form-control"  placeholder="will be hooked up soon" disabled>-->
+                <textarea rows="3" cols="62" pInputTextarea formControlName="proddescrip" autoResize="autoResize"></textarea>
+        </div>
+
+  </div>
+  </form>
+  </div>
+
+<!-- Third Section at Bottom below Submit Button-->
+
+<div class="col-lg-12">
+  <legend>Product Details </legend>
+  <form class="bs-component" [formGroup]="vendorForm">
+        <div formGroupName="details2">
+
+<p-tabView>
+<p-tabPanel header="Product Models and Metrics">
+
+</p-tabPanel>
+
+<p-tabPanel header="Product Versions">
+
+</p-tabPanel>
+
+  <p-tabPanel header="Product Features" leftIcon="fa-bookmark-o">
+    <div class="form-group">
+<!--<label>Add Appropriate Product Features:</label>-->
+  <button class="btn btn-primary btn-sm" (click)="addFeature()">Add Feature</button>
+   <!-- <button class="btn btn-warning" (click)="removeFeature(i)">Remove Feature</button>-->
+<br>
+<br>
+
+<div class="form-group" formArrayName="features">
+  <div *ngFor="let feature of features.controls; let i=index" [formGroupName]="i" >
+
+    <div class="container">
+      <div class="row">
+ 
+     <div class="col-6">
+        <label>Feature Name:</label>
+      <input type="text" class="form-control" formControlName="featurename">
+     </div>
+  <div class="col-6">
+       <label>Feature Category:</label>
+  <select class="form-control" formControlName="featurecat" >
+      <option value="0">Select Category</option>
+      <option *ngFor="let persona of personas" value="{{persona.personaname}}" >{{persona.personaname}} </option>
+    </select>
+</div>
+    </div>
+<br>
+
+    <div class="row">
+<div class="col-12">
+       <label>Feature Description:</label>
+       <div class="container">
+        <textarea rows="1" cols="121" pInputTextarea autoResize="autoResize" formControlName="featuredescrip"></textarea>
+        <!--<input type="text" class="form-control" >-->
+        
+
+      </div>
+       </div>
+</div>
+    </div>
+    <br>
+
+          <button class="btn btn-warning btn-sm" (click)="removeFeature(i)">Remove Feature</button>
+  </div>
+  </div>
+  </div>
+  </p-tabPanel>
+
+ <p-tabPanel header="Platform Support">
+
+    <!--<div class="form-group">
+        <label>Persona Notes:</label>
+        <input type="text" class="form-control" formControlName="personanotes">-->
+
+      <h3>Platforms</h3>
+      
+<div class="ui-g" style="width:250px;margin-bottom:10px">
+    <div class="ui-g-12"><p-checkbox name="group2" value="Windows" label="Windows"  ></p-checkbox></div>
+    <div class="ui-g-12"><p-checkbox name="group2" value="Linux" label="Linux"   ></p-checkbox></div>
+    <div class="ui-g-12"><p-checkbox name="group2" value="AIX" label="AIX"   ></p-checkbox></div>
+    <div class="ui-g-12"><p-checkbox name="group2" value="iSeries" label="iSeries"   ></p-checkbox></div>
+</div>
+          
+  <!--</div>-->  
+
+  </p-tabPanel>
+
+ <p-tabPanel header="Cloud Integration">
+    <div class="form-group" >
+        <label>Checkboxes:</label>
+
+  </div>  
+    
+  </p-tabPanel>
+
+  <p-tabPanel header="GRC Support">
+
+</p-tabPanel>
+
+<p-tabPanel header="Other Product Integration">
+
+</p-tabPanel>
+
+</p-tabView>
+
+
+
+    </div> 
+  </form>
+</div>
+
+</div>
+</div>
+</div>
+
+<footer class="footer">
+      <div class="container">
+        <span class="text-muted">Powered by Zygodata</span>
+      </div>
+    </footer>
+
+
+
+
+
+
+
+
+
+
+<!--  Code Repository
+
+
+<button class="btn btn-primary" (click)="addFeature()">Add Feature</button>-->
+        <!--<button class="btn btn-primary" (click)="addFeature()">Add Feature</button>-->
+        <!--<button class="btn btn-danger" (click)="removeFeature(i)">Remove Feature</button>
+
+
+
+
+
+   <div class="form-group">
+        <label>Vendor Purchasing Source Relationship:</label>
+         <select name="source" class="form-control" [(ngModel)]="source" formControlName="source" [(ngModel)]="zvendor.slist" >
+        <option *ngFor="let slist of slists" [value]="slist.value">{{slist.display}}</option>
+          </select>
+                  <span class="help-block" style="color:red">Required drop down field</span>
+        <input type="text" class="form-control" [(ngModel)]="source"  formControlName="source">
+     <span class="help-block">List the distributor that represents the vendor</span>
+  </div>
+  
+
+   <table class="table">
+      <thead>
+        <tr>
+          <th>Feature Name</th>
+          <th>Feature Category</th>
+          <th>Feature Description</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>{{name}}</td>
+          <td>{{category}}</td>
+          <td>{{description}}</td>
+          <td>
+            <button class="btn btn-primary">More</button>
+            <button class="btn btn-primary">Edit</button>
+            <button class="btn btn-primary">Delete</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  
+  
+  
+  <div class="col-lg-12">
+  <legend>Product Details</legend>
+  <form class="bs-component" [formGroup]="vendorForm">
+    <div formGroupName="details2">
+
+
+<p-tabView>
+  <p-tabPanel header="Personas" leftIcon="fa-bookmark-o">
+    <div class="form-group">
+<label>Add Appropriate Product Personas  (sample selections):</label>
+
+   <app-persona [persona]="persona" class="col-sm-4"></app-persona>
+   
+   
+  </div>
+  </p-tabPanel>
+
+
+ 
+ <p-tabPanel header="Personas- Direct" leftIcon="fa-bookmark-o">
+    <div class="form-group">
+<label>Add Appropriate Product Personas  (sample selections):</label>
+
+<ul class="list-group">
+  <li class="list-group-item" *ngFor="let persona of personas">
+    <button class="btn btn-danger"(click)="onPassPersona(persona)">Add Peronsa</button>&nbsp;
+    {{persona.personaname}}
+  </li>
+</ul>
+
+    </div>
+
+  </p-tabPanel>
+
+  <p-tabPanel header="Platforms" leftIcon="fa-bookmark-o">
+    <div class="form-group">
+        <label>Persona Notes:</label>
+        <input type="text" class="form-control" formControlName="personanotes">
+  </div>  
+  </p-tabPanel>
+
+  <p-tabPanel header="Cloud Integration">
+    
+     
+ <app-persona [persona]="persona" class="col-sm-4"></app-persona>
+      
+  </p-tabPanel>
+
+
+  <p-tabPanel header="Persona Tag Table">
+        
+
+<table class="table">
+  <thead>
+    <tr>
+     <th>Add Persona Tag</th>
+      <th>Listed Perona Tag</th>
+      <th>Delete Persona Tag</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let persona of personas; let i=index">
+      <td><button class="btn btn-danger"(click)="onPassPersona(persona)">Add Peronsa</button> {{persona.personaname}}</td>
+      <td><div class="form-group">
+      <input [(ngModel)]= 'model.personaname' class="form-control" formControlName="personaname2">
+  </div></td>
+      <td>Delete Persona Tag</td>
+    </tr>
+  </tbody>
+  </table>
+  </p-tabPanel>
+</p-tabView>
+
+
+    </div> 
+  </form>
+</div>
+
+
+
+
+</div>
+</div>
+</div>
+
+
+
+<footer class="footer">
+      <div class="container">
+        <span class="text-muted">Powered by Zygodata</span>
+      </div>
+    </footer>-->
+
+
+
+<!--<div class="row">
+<div class="col-xs-12">
+<ul class="list-group">
+  <li class="list-group-item" *ngFor="let persona of personas" >
+    <button class="btn btn-success" (click)="onAddPersona()">Add Persona</button>&nbsp;
+    {{persona.description}}
+  </li>
+<li class="list-group-item">
+  <button class="btn btn-danger" (click)="onTestRemove()"> Remove Persona</button>
+      </li>
+</ul>
+</div>
+</div>-->
+
+
+<!--<div class="ui-g" style="width:250px;margin-bottom:10px">
+    <div class="ui-g-12"><p-checkbox name="group2" value="Copy Data Managment" label="Copy Data Management" formControlName="prodcat"></p-checkbox></div>
+    <div class="ui-g-12"><p-checkbox name="group2" value="Wireless Networking" label="Wireless Networking" formControlName="prodcat2"></p-checkbox></div>
+    <div class="ui-g-12"><p-checkbox name="group2" value="Fraud Detection" label="Fraud Detection" formControlName="prodcat"></p-checkbox></div>
+    <div class="ui-g-12"><p-checkbox name="group2" value="Cloud NAS Gateway" label="Cloud NAS Gateway" formControlName="prodcat"></p-checkbox></div>
+    <div class="ui-g-12"><p-checkbox name="group2" value="Wirless Networking" label="Wirless Networking" formControlName="prodcat"></p-checkbox></div>
+    <div class="ui-g-12"><p-checkbox name="group2" value="Flash Storage" label="Flash Storage" formControlName="prodcat"></p-checkbox></div>
+    <div class="ui-g-12"><p-checkbox name="group2" value="Backup" label="Backup" formControlName="prodcat"></p-checkbox></div>
+    <div class="ui-g-12"><p-checkbox name="group2" value="Cloud Application Backup" label="Cloud Application Backup" formControlName="prodcat"></p-checkbox></div>
+    <div class="ui-g-12"><p-checkbox name="group2" value="Vendor Neutral Archive" label="Vendor Neutral Archive" formControlName="prodcat"></p-checkbox></div>
+</div>-->
+
+
+<!--<p-tabView>
+  <p-tabPanel header="Personas" leftIcon="fa-bookmark-o">
+    <div class="form-group">
+<label>Add Appropriate Product Personas  (sample selections):</label>
+<div class="row">
+<div class="col-xs-12">
+<ul class="list-group">
+  <app-persona></app-persona>
+  <li class="list-group-item" >
+    <span class="badge">Photo</span>
+        <button class="btn btn-danger"> Remove Persona</button>
+      </li>
+</ul>
+</div>
+</div>
+
+</div>
+  </p-tabPanel>
+  <p-tabPanel header="Platforms" leftIcon="fa-bookmark-o">
+    Content
+  </p-tabPanel>
+  <p-tabPanel header="Cloud Integration">
+    Content
+  </p-tabPanel>
+</p-tabView>-->

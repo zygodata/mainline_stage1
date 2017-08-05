@@ -1,0 +1,86 @@
+<br>
+<div class="container">
+
+<legend> Category Management Dashboard </legend>
+
+
+
+
+  <p-tabView>
+<p-tabPanel header="Vendor Categories">
+
+</p-tabPanel>
+
+<p-tabPanel header="Product Categories">
+
+</p-tabPanel>
+
+<p-tabPanel header="Feature Categories">
+
+</p-tabPanel>
+
+<p-tabPanel header="GRC Categories">
+
+</p-tabPanel>
+
+<p-tabPanel header="Cloud Categories">
+
+
+
+</p-tabPanel>
+
+
+
+<p-tabPanel header="Persona Categories">
+  <div class="row">
+  <div class="col-lg-6">
+    <div class="well bs-component">
+<form class="form-horizontal" [formGroup]="personaForm" (ngSubmit)="onSubmit()">
+<legend>Add Persona Category</legend>
+ 
+  <div class="form-group">
+        <label>Category Name:</label>
+      <input type="text" class="form-control"  formControlName="personaname" >
+      <br>
+        <label>Category Descrption:</label>
+      <input type="text" class="form-control"   >
+    <br>
+
+    <label>Category Details:</label>
+    <textarea rows="2" cols="60" pInputTextarea autoResize="autoResize" ></textarea>
+
+      <button type="submit"  class="btn btn-primary">Submit</button>
+
+
+  </div>
+     </form>
+  </div>
+
+
+  </div>
+
+  <div class="container">
+  <div class="row">
+    <div col="6">
+ <ul class="list-group">
+    <li class="list-group-item" *ngFor="let persona of personas">
+   <!--<button class="btn btn-success" (click)="onAddPersona(persona)">Add Persona</button>&nbsp;-->
+    {{persona.personaname}}
+    </li>
+ </ul>
+    </div>
+  </div>
+</div>
+
+
+</div>
+
+
+
+</p-tabPanel>
+
+
+</p-tabView>
+
+</div>
+

@@ -1,0 +1,325 @@
+<p-toolbar>
+    <div class="ui-toolbar-group-left">
+        <button pButton type="button"  [routerLink]="['/vendor']" label="Add Vendors" icon="fa-plus"></button>
+       <!--<button pButton type="button" [routerLink]="['/vendor-list']" label="Vendor Details" icon="fa-folder-open"></button>-->
+            
+       <!-- <i class="fa fa-bars"></i>
+        <button pButton type="button"  label="Add Products" icon="fa-plus"></button>
+        <button pButton type="button" label="Product Details" icon="fa-folder-open"></button>-->
+
+
+         </div>
+    
+   <div class="ui-toolbar-group-right">
+
+            <button type="button" pButton icon="fa-file-o"  label="CSV" (click)="dt.exportCSV()" ></button>
+               <i class="fa fa-bars"></i>
+            <button type="button" pButton (click)="update(dt)" label="Reset" ></button>
+                    </div>
+
+       <!-- <button pButton type="button" icon="fa-search"></button>
+        <i class="fa fa-bars"></i>
+        <button pButton type="button" icon="fa-refresh"></button>
+        <button pButton type="button" icon="fa-trash"></button>
+    </div>-->
+</p-toolbar>
+
+
+
+<!--<div class="ui-widget-header" style="padding:4px 10px;border-bottom: 0 none">
+    <i class="fa fa-search" style="margin:4px 4px 0 0"></i>
+    <input #gb type="text" pInputText size="50" placeholder="Global Filter">
+</div>-->
+
+<p-dataTable  [value]="vendors" selectionMode="single" exportFilename="products" [rows]="10" [paginator]="true" #dt>
+    <p-header><strong>Vendor Dashboard</strong></p-header>
+          <p-column  header="Vendor Details" styleClass="col-Button" [style]="{'width' : '8%'}">
+            <ng-template let-vendor="rowData" pTemplate="body">
+             <li class="list-group-item">
+                 <button type="button" pButton [routerLink]="['/vendor-detail/'+vendor.$key]" icon="fa-search"></button>
+            <!-- <a [routerLink]="['/product-detail/'+product.$key]">{{product.prodname}} </a>-->
+             </li>
+             </ng-template>    
+                               
+     </p-column>
+
+ <p-column field="companyname" header="Company Name" [filter]="true" filterPlaceholder="Search"></p-column>
+ <p-column field="companytype" header="Company Category" [filter]="true" filterPlaceholder="Search"></p-column>
+ <p-column field="mlcontact" header="Mainline Relationship Contact" [filter]="true" filterPlaceholder="Search"></p-column>
+
+<p-column  header="Add Products" styleClass="col-Button" [style]="{'width' : '8%'}">
+            <ng-template let-vendor="rowData" pTemplate="body">
+             <li class="list-group-item">
+                 <button type="button" pButton [routerLink]="['/vendor-detail/'+vendor.$key]" icon="fa-search"></button>
+            <!-- <a [routerLink]="['/product-detail/'+product.$key]">{{product.prodname}} </a>-->
+             </li>
+             </ng-template>  
+</p-column>
+ </p-dataTable>
+
+
+
+
+  <!--<p-chart type="doughnut" [data]="data" [width]="400" [height]="400"></p-chart>-->
+ 
+ <footer class="footer">
+      <div class="container">
+        <span class="text-muted">Powered by Zygodata</span>
+      </div>
+    </footer>
+
+<!-- WORKING TABLE WITHOUT [ROUTER LINK] <p-growl [value]="msgs"></p-growl>
+<p-dataTable  [value]="vendors" exportFilename="vendors" [rows]="15" [paginator]="true" #dt>
+    <p-header>Vendor Dashboard</p-header>
+     <p-column styleClass="col-button" [style]="{'width' : '5%'}">
+        <ng-template pTemplate="header">
+            <button type="button" pButton (click)="update(dt)" icon="fa-refresh"></button>
+        </ng-template>
+        <ng-template let-ven="rowData" pTemplate="body">
+            <button type="button" pButton (click)="selectVendor(ven)" icon="fa-search"></button>
+        </ng-template>
+    </p-column>
+    <p-column field="companyname" header="Company Name" [filter]="true" filterPlaceholder="Search"></p-column>
+    <p-column field="companytype" header="Vendor Category" [filter]="true" filterPlaceholder="Search"></p-column>
+        <p-column field="mlcontact" header="Mainline Relationship Owner" [filter]="true" filterPlaceholder="Search">
+  <p-column  header="Company Details">
+      <ng-template let-ven="rowData"  pTemplate="type">
+      <button type="button" pButton (click)=onAlert() icon="fa-search"></button>
+    </ng-template>
+           </p-column>
+  </p-dataTable>-->
+
+<!-- <p-column field="mlcontact" header="Mainline Vendor Relationship Owner" layout="row" [style]="{'width' : '15%'}">
+                </p-column>-->
+
+<!--<h3>Vendor List</h3>
+<p-dataTable [value]="vendors" [(selection)]="selectedCar3" dataKey="companyname">
+    <p-header>Single Selection</p-header>
+    <p-footer><div style="text-align: left">Selected Car: {{selectedCar3 ? selectedCar3.vin + ' - ' + selectedCar3.brand + ' - ' + selectedCar3.year + ' - ' + selectedCar3.color: 'none'}}</div></p-footer>
+    <p-column [style]="{'width':'38px'}" selectionMode="single"></p-column>
+    <p-column field="companyname" header="Company Name"></p-column>
+    <p-column field="companytype" header="Company Type"></p-column>
+    <p-column field="source"  header="Purchasing Source"></p-column>
+    <p-column  header="Company Details">
+      <ng-template let-vendor="rowData"  pTemplate="type">
+      <button type="button" class="btn btn-secondary" (click)="onAlert()" icon="fa-search"></button>
+    </ng-template>
+           </p-column>
+</p-dataTable>-->
+
+<!-- BACKUP of Working TABLE<h3>Vendor List</h3>
+<p-dataTable [value]="vendors" [(selection)]="selectedCar3" dataKey="companyname">
+    <p-header>Single Selection</p-header>
+    <p-footer><div style="text-align: left">Selected Car: {{selectedCar3 ? selectedCar3.vin + ' - ' + selectedCar3.brand + ' - ' + selectedCar3.year + ' - ' + selectedCar3.color: 'none'}}</div></p-footer>
+    <p-column [style]="{'width':'38px'}" selectionMode="single"></p-column>
+    <p-column field="companyname" header="Company Name"></p-column>
+    <p-column field="companytype" header="Company Type"></p-column>
+    <p-column field="source"  header="Purchasing Source"></p-column>
+    <p-column  header="Company Details">
+      <ng-template let-vendor="rowData"  pTemplate="type">
+       THIS DOES PULL A LIST INTO THE TABLE <li class="list-group-item" *ngFor="let vendor of vendors">
+    <a [routerLink]="['/vendor/'+vendor.$key]">{{vendor.companyname}} </a>
+    </li>
+        <button type="button" class="btn btn-secondary" (click)="onAlert()" icon="fa-search"></button>
+    </ng-template>
+           </p-column>
+</p-dataTable>-->
+
+
+
+
+
+
+<!--RADIO BUTTON SELECTION SOURCE
+<h3>RadioButton</h3>
+<p>Single selection can also be handled using radio buttons by enabling the selectionMode property of column as "single".</p>
+<p-dataTable [value]="vendors" [(selection)]="selectedCar3" dataKey="companyname">
+    <p-header>Single Selection</p-header>
+    <p-footer><div style="text-align: left">Selected Car: {{selectedCar3 ? selectedCar3.vin + ' - ' + selectedCar3.brand + ' - ' + selectedCar3.year + ' - ' + selectedCar3.color: 'none'}}</div></p-footer>
+    <p-column [style]="{'width':'38px'}" selectionMode="single"></p-column>
+    <p-column field="companyname" header="Company Name"></p-column>
+    <p-column field="companytype" header="Company Type"></p-column>
+    <p-column field="source" header="Purchasing Source"></p-column>
+    <p-column field="$key" header="Company Details"></p-column>
+</p-dataTable>-->
+
+
+   <!--<p-dataTable [value]="vendors">
+    <p-column *ngFor="let col of cols" [field]="col.field" [header]="col.header"></p-column>
+</p-dataTable>
+
+        <p-column field="color" header="Color">
+    <ng-template let-col let-car="rowData" let-ri="rowIndex" pTemplate="body">
+        <span>{{car[col.field]}}</span>
+    </ng-template>
+</p-column>
+<p-column>
+    <ng-template pTemplate="header">
+        <button type="button" pButton (click)="selectAllCars()" icon="fa-check"></button>
+    </ng-template>
+    <ng-template let-car="rowData" pTemplate="body">
+        <button type="button" pButton (click)="selectCar(car)" icon="fa-search"></button>
+    </ng-template>
+</p-column>-->
+
+
+  
+  <!--<div class="page-header">
+    <legend>Vendor Company List</legend>
+    </div>
+  <div class="col-md-4">
+  <ul class="list-group">
+  <li class="list-group-item" *ngFor="let vendor of vendors">
+    <a [routerLink]="['/vendor-detail/'+vendor.$key]">{{vendor.companyname}} </a>
+    </li>
+  </ul>
+  </div>-->
+          <!--<h2>Section title</h2>
+          <div class="table-responsive">
+            <table class="table table-striped">
+              <thead>
+                <tr>
+                  <th>#</th>
+                  <th>Header</th>
+                  <th>Header</th>
+                  <th>Header</th>
+                  <th>Header</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>1,001</td>
+                  <td>Lorem</td>
+                  <td>ipsum</td>
+                  <td>dolor</td>
+                  <td>sit</td>
+                </tr>
+                <tr>
+                  <td>1,002</td>
+                  <td>amet</td>
+                  <td>consectetur</td>
+                  <td>adipiscing</td>
+                  <td>elit</td>
+                </tr>
+                <tr>
+                  <td>1,003</td>
+                  <td>Integer</td>
+                  <td>nec</td>
+                  <td>odio</td>
+                  <td>Praesent</td>
+                </tr>
+                <tr>
+                  <td>1,003</td>
+                  <td>libero</td>
+                  <td>Sed</td>
+                  <td>cursus</td>
+                  <td>ante</td>
+                </tr>
+                <tr>
+                  <td>1,004</td>
+                  <td>dapibus</td>
+                  <td>diam</td>
+                  <td>Sed</td>
+                  <td>nisi</td>
+                </tr>
+                <tr>
+                  <td>1,005</td>
+                  <td>Nulla</td>
+                  <td>quis</td>
+                  <td>sem</td>
+                  <td>at</td>
+                </tr>
+                <tr>
+                  <td>1,006</td>
+                  <td>nibh</td>
+                  <td>elementum</td>
+                  <td>imperdiet</td>
+                  <td>Duis</td>
+                </tr>
+                <tr>
+                  <td>1,007</td>
+                  <td>sagittis</td>
+                  <td>ipsum</td>
+                  <td>Praesent</td>
+                  <td>mauris</td>
+                </tr>
+                <tr>
+                  <td>1,008</td>
+                  <td>Fusce</td>
+                  <td>nec</td>
+                  <td>tellus</td>
+                  <td>sed</td>
+                </tr>
+                <tr>
+                  <td>1,009</td>
+                  <td>augue</td>
+                  <td>semper</td>
+                  <td>porta</td>
+                  <td>Mauris</td>
+                </tr>
+                <tr>
+                  <td>1,010</td>
+                  <td>massa</td>
+                  <td>Vestibulum</td>
+                  <td>lacinia</td>
+                  <td>arcu</td>
+                </tr>
+                <tr>
+                  <td>1,011</td>
+                  <td>eget</td>
+                  <td>nulla</td>
+                  <td>Class</td>
+                  <td>aptent</td>
+                </tr>
+                <tr>
+                  <td>1,012</td>
+                  <td>taciti</td>
+                  <td>sociosqu</td>
+                  <td>ad</td>
+                  <td>litora</td>
+                </tr>
+                <tr>
+                  <td>1,013</td>
+                  <td>torquent</td>
+                  <td>per</td>
+                  <td>conubia</td>
+                  <td>nostra</td>
+                </tr>
+                <tr>
+                  <td>1,014</td>
+                  <td>per</td>
+                  <td>inceptos</td>
+                  <td>himenaeos</td>
+                  <td>Curabitur</td>
+                </tr>
+                <tr>
+                  <td>1,015</td>
+                  <td>sodales</td>
+                  <td>ligula</td>
+                  <td>in</td>
+                  <td>libero</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </main>
+      </div>
+    </div>
+
+
+
+
+
+
+
+
+<!<ul *ngFor="let vendor of vendors">
+  <li>{{vendor.$key}</li>
+  </ul>-->
+
+
+
+<!--<p>
+  
+  dashboard works!
+</p>-->

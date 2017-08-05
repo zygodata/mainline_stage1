@@ -1,0 +1,87 @@
+
+<p-toolbar>
+    <div class="ui-toolbar-group-left">
+        <!--<button pButton type="button"  [routerLink]="['/vendor']" label="Add Vendor" icon="fa-plus"></button>
+        <button pButton type="button" [routerLink]="['/vendor-list']" label="Vendor Details" icon="fa-folder-open"></button>-->
+            
+       <!-- <i class="fa fa-bars"></i>-->
+        <button pButton type="button" [routerLink]="['/dashboard']" label="Add Products" icon="fa-plus"></button>
+        <!--<button pButton type="button" [routerLink]="['/product-list']" label="Product Details" icon="fa-folder-open"></button>-->
+         </div>
+    
+   <div class="ui-toolbar-group-right">
+
+            <button type="button" pButton icon="fa-file-o"  label="CSV" (click)="dt.exportCSV()" ></button>
+               <i class="fa fa-bars"></i>
+            <button type="button" pButton (click)="update(dt)" label="Reset" ></button>
+                    </div>
+       <!-- <button pButton type="button" icon="fa-search"></button>
+        <i class="fa fa-bars"></i>
+        <button pButton type="button" icon="fa-refresh"></button>
+        <button pButton type="button" icon="fa-trash"></button>
+    </div>-->
+</p-toolbar>
+
+ <p-dataTable  [value]="products" selectionMode="single" exportFilename="products" [rows]="10" [paginator]="true" #dt>
+    <p-header><strong>Product Dashboard</strong></p-header>
+          <p-column  header="Product Details" styleClass="col-Button" [style]="{'width' : '8%'}">
+
+            <ng-template let-product="rowData" pTemplate="body">
+             <li class="list-group-item">
+                 <button type="button" pButton [routerLink]="['/product-detail/'+product.$key]" icon="fa-search"></button>
+            <!-- <a [routerLink]="['/product-detail/'+product.$key]">{{product.prodname}} </a>-->
+             </li>
+             </ng-template>                              
+     </p-column>
+         <p-column field="prodname" header="Product Name" [filter]="true" filterPlaceholder="Search"></p-column>
+         <p-column field="prodcat" header="Product Category" [filter]="true" filterPlaceholder="Search" ></p-column>
+          <p-column field="mltechcontact" header="Mainline Technical Contact" [filter]="true" filterPlaceholder="Search"></p-column>
+ </p-dataTable>
+
+
+
+ 
+ <footer class="footer">
+      <div class="container">
+        <span class="text-muted">Powered by Zygodata</span>
+      </div>
+    </footer>
+
+        <!-- WORKING !!!!  [routerLink] </p-dataTable>
+
+
+       <p-dataTable  [value]="products" selectionMode="single" exportFilename="products" [rows]="15" [paginator]="true" #dt>
+    <p-header>Product Dashboard</p-header>
+          <p-column  header="Product Name" [filter]="true" filterPlaceholder="Search">
+
+            <ng-template let-product="rowData" pTemplate="body">
+             <li class="list-group-item">
+             <a [routerLink]="['/product-detail/'+product.$key]">{{product.prodname}} </a>
+             </li>
+             </ng-template>
+                               
+     </p-column>
+            </p-dataTable>-->
+
+            <!-- WORKING TABLE <p-growl [value]="msgs"></p-growl>
+<p-dataTable  [value]="products" exportFilename="products" [rows]="15" [paginator]="true" #dt>
+    <p-header>Product Dashboard</p-header>
+     <p-column styleClass="col-button" [style]="{'width' : '5%'}">
+        <ng-template pTemplate="header">
+            <button type="button" pButton (click)="update(dt)" icon="fa-refresh"></button>
+        </ng-template>
+        <ng-template let-ven="rowData" pTemplate="body">
+            <button type="button" pButton (click)="selectVendor(ven)" icon="fa-search"></button>
+        </ng-template>
+    </p-column>
+    <p-column field="companyname" header="Company Name" [filter]="true" filterPlaceholder="Search"></p-column>
+    <p-column field="prodname" header="Product Name" [filter]="true" filterPlaceholder="Search"></p-column>
+    <p-column field="prodcat" header="Product Category" [filter]="true" filterPlaceholder="Search"></p-column>
+    <p-column field="mltechcontact" header="Mainline Contact" [filter]="true" filterPlaceholder="Search"></p-column>
+    <p-column  header="Product Details">
+      <ng-template let-ven="rowData"  pTemplate="type">
+      <button type="button" pButton (click)="onAlert()" icon="fa-search"></button>
+      </ng-template> </p-column>
+  </p-dataTable>-->
+
+  <!--<p-chart type="doughnut" [data]="data" [width]="400" [height]="400"></p-chart>-->

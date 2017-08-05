@@ -1,2 +1,30 @@
-<router-outlet></router-outlet>
- 
+  <div class="container">
+     <app-navbar></app-navbar>
+  <router-outlet></router-outlet>
+  <flash-messages></flash-messages>
+  </div>
+
+
+
+
+
+
+<!-- This One Works!
+<div class="container">
+ <router-outlet></router-outlet>
+  <button class="btn btn-primary btn-margin" (click)="_auth.login()" *ngIf="!_auth.authenticated()">Log In</button>
+  <button class="btn btn-primary btn-margin" (click)="_auth.logout()" *ngIf="_auth.authenticated()">Log Out</button>
+</div>-->
+
+
+<!--<div class="navbar-header">
+  <a class="navbar-brand" href="#">Auth0 - Angular 2</a>
+  <button class="btn btn-primary btn-margin" (click)="_auth.login()" *ngIf="!_auth.authenticated()">Log In</button>
+  <button class="btn btn-primary btn-margin" (click)="_auth.logout()" *ngIf="_auth.authenticated()">Log Out</button>
+</div>-->
+
+<!-- Sample Selector Layout
+<app-navbar></app-navbar>
+<app-home></app-home>  (Has Jumbotron)
+
+<router-outlet></router-outlet>-->
